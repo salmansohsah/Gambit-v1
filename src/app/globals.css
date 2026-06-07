@@ -10,6 +10,7 @@
   --color-surface-elevated: #E5E5E5; /* Subtle borders */
   --color-surface-card: #FFFFFF; /* Pure white for cards */
   --color-surface-panel: #FAFAFA; /* Off-white for large structural panels */
+  --color-surface-base: #FAFAFA; /* Default structural background */
   
   /* Text Colors */
   --color-text-primary: #0A0A0A;
