@@ -61,6 +61,13 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
     setFormData({});
   };
 
+  React.useEffect(() => {
+    if (selectedProject && !isCreating) {
+      const latestProject = initialProjects.find(p => p.id === selectedProject.id) || selectedProject;
+      setFormData(latestProject);
+    }
+  }, [selectedProject, initialProjects, isCreating]);
+
   const handleSave = () => {
     startTransition(async () => {
       let result;

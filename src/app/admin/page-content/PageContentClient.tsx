@@ -20,11 +20,18 @@ export default function PageContentClient({ initialContent }: { initialContent: 
 
   const openEditor = (item: any) => {
     setSelectedItem(item);
-    setFormData({
-      value_text: item.value_text || '',
-      value_json: item.value_json ? JSON.stringify(item.value_json, null, 2) : '',
-    });
   };
+
+  React.useEffect(() => {
+    if (selectedItem) {
+      // Find the latest version of this item from initialContent if possible
+      const latestItem = initialContent.find(i => i.id === selectedItem.id) || selectedItem;
+      setFormData({
+        value_text: latestItem.value_text || '',
+        value_json: latestItem.value_json ? JSON.stringify(latestItem.value_json, null, 2) : '',
+      });
+    }
+  }, [selectedItem, initialContent]);
 
   const handleSave = () => {
     if (!selectedItem) return;
