@@ -12,7 +12,7 @@ export async function getDashboardMetrics() {
   const { count: newLeadsCount } = await supabase
     .from('discovery_leads')
     .select('*', { count: 'exact', head: true })
-    .eq('status', 'New')
+    .eq('status', 'new')
     .gte('submitted_at', sevenDaysAgo.toISOString());
 
   // Pending Reviews
@@ -48,7 +48,7 @@ export async function getActivePipeline() {
   const { data, error } = await supabase
     .from('discovery_leads')
     .select('id, full_name, organization, status, submitted_at')
-    .in('status', ['New', 'Reviewed', 'In Conversation'])
+    .in('status', ['new', 'reviewed', 'in_conversation'])
     .order('submitted_at', { ascending: false })
     .limit(5);
 

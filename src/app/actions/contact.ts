@@ -37,7 +37,6 @@ export async function submitContactForm(formData: FormData) {
       }
     }
 
-    // Since we now have the exact discovery_leads schema verified against the database
     const payload = {
       full_name: name,
       email,

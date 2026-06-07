@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useTransition, useEffect } from 'react';
 import { Typography } from '@/components/ui/Typography';
 import { Panel } from '@/components/ui/Panel';
 import { Button } from '@/components/ui/Button';
@@ -15,6 +15,12 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
   const router = useRouter();
 
   const [formData, setFormData] = useState<any>({});
+
+  useEffect(() => {
+    if (selectedCap) {
+      setFormData(selectedCap);
+    }
+  }, [selectedCap]);
 
   const openEditor = (cap?: any) => {
     if (cap) {

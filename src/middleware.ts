@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server'
 import { updateSession, isAdminRole } from '@/lib/supabase/middleware'
 
-export async function proxy(request: NextRequest) {
+export async function middleware(request: NextRequest) {
   const { supabaseResponse, user, role } = await updateSession(request)
 
   const path = request.nextUrl.pathname

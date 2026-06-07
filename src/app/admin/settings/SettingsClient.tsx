@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useTransition } from 'react';
+import React, { useState, useTransition, useEffect } from 'react';
 import { Typography } from '@/components/ui/Typography';
 import { Panel } from '@/components/ui/Panel';
 import { Button } from '@/components/ui/Button';
@@ -23,6 +23,12 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
     linkedin_url: '',
     instagram_url: '',
   });
+
+  useEffect(() => {
+    if (initialSettings) {
+      setFormData(initialSettings);
+    }
+  }, [initialSettings]);
 
   const [isPending, startTransition] = useTransition();
   const router = useRouter();

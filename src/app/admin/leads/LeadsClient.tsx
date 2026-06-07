@@ -31,7 +31,11 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
     setSelectedLead({ ...selectedLead, status: newStatus });
     
     startTransition(async () => {
-      await updateLeadStatus(selectedLead.id, newStatus);
+      const result = await updateLeadStatus(selectedLead.id, newStatus);
+      if (!result.success) {
+        alert('Failed to update status: ' + result.error);
+        setSelectedLead({ ...selectedLead }); // Revert
+      }
       router.refresh();
     });
   };
@@ -88,11 +92,11 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
               className="bg-surface-card border border-surface-elevated rounded-md px-3 py-2 text-sm focus:border-accent-blue outline-none transition-colors w-full sm:w-auto"
             >
               <option value="All">All Statuses</option>
-              <option value="New">New</option>
-              <option value="Reviewed">Reviewed</option>
-              <option value="In Conversation">In Conversation</option>
-              <option value="Closed Won">Closed Won</option>
-              <option value="Closed Lost">Closed Lost</option>
+              <option value="new">New</option>
+              <option value="reviewed">Reviewed</option>
+              <option value="in_conversation">In Conversation</option>
+              <option value="closed_won">Closed Won</option>
+              <option value="closed_lost">Closed Lost</option>
             </select>
           </div>
         </div>
@@ -120,13 +124,13 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
                   </td>
                   <td className="px-6 py-4">
                     <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      lead.status === 'New' ? 'bg-green-500/10 text-green-500 border border-green-500/20' :
-                      lead.status === 'Reviewed' ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20' :
-                      lead.status === 'In Conversation' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' :
-                      lead.status === 'Closed Won' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' :
+                      lead.status === 'new' ? 'bg-green-500/10 text-green-500 border border-green-500/20' :
+                      lead.status === 'reviewed' ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20' :
+                      lead.status === 'in_conversation' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' :
+                      lead.status === 'closed_won' ? 'bg-emerald-500/10 text-emerald-500 border border-emerald-500/20' :
                       'bg-red-500/10 text-red-500 border border-red-500/20'
                     }`}>
-                      {lead.status}
+                      {lead.status ? lead.status.replace(/_/g, ' ').replace(/\b\w/g, (l: string) => l.toUpperCase()) : 'Unknown'}
                     </span>
                   </td>
                   <td className="px-6 py-4 text-sm text-text-muted">
@@ -210,11 +214,11 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
                     onChange={(e) => handleStatusChange(e.target.value)}
                     disabled={isPending}
                   >
-                    <option value="New">New</option>
-                    <option value="Reviewed">Reviewed</option>
-                    <option value="In Conversation">In Conversation</option>
-                    <option value="Closed Won">Closed Won</option>
-                    <option value="Closed Lost">Closed Lost</option>
+                    <option value="new">New</option>
+                    <option value="reviewed">Reviewed</option>
+                    <option value="in_conversation">In Conversation</option>
+                    <option value="closed_won">Closed Won</option>
+                    <option value="closed_lost">Closed Lost</option>
                   </select>
                 </div>
 
