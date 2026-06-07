@@ -37,40 +37,28 @@ export async function submitContactForm(formData: FormData) {
       }
     }
 
-    // Since we don't have the exact discovery_leads schema fields fully guaranteed for custom inputs,
-    // we use standard mappings based on common CRM architectures or fallback to standard json.
+    // Since we now have the exact discovery_leads schema verified against the database
     const payload = {
       full_name: name,
       email,
       organization: company,
-      website,
+      website_url: website,
       industry,
       primary_goal: goal,
       current_challenge: challenge,
       budget_range: budget,
       timeline,
+      source: 'website_contact_form',
       status: 'new'
     }
 
-    // Depending on schema, it might be discovery_leads or leads
     const { error } = await supabase
       .from('discovery_leads')
       .insert(payload)
 
     if (error) {
-      // Fallback if schema is slightly different
-      console.warn('First insert failed, trying alternative payload format', error)
-      const fallbackPayload = {
-        name,
-        email: email || 'not-provided@example.com',
-        company,
-        notes: JSON.stringify({ website, industry, goal, challenge, budget, timeline }),
-        status: 'new'
-      }
-      const { error: fallbackError } = await supabase.from('discovery_leads').insert(fallbackPayload)
-      if (fallbackError) {
-        throw fallbackError
-      }
+      console.error('Contact Form Insert Error:', error)
+      throw error
     }
 
     return { success: true, message: 'Request received' }
