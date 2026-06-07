@@ -15,7 +15,7 @@ const arabic = IBM_Plex_Sans_Arabic({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gambit.com'),
+  metadataBase: new URL('https://gambit-co.vercel.app'),
   title: "GAMBIT - Strategic Digital Agency",
   description: "Create positions. Defend advantages. Scale intelligently.",
   openGraph: {

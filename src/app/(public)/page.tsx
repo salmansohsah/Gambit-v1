@@ -18,7 +18,7 @@ export default async function Home() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "name": "GAMBIT",
-    "url": "https://gambit.com",
+    "url": "https://gambit-co.vercel.app",
     "description": "Create positions. Defend advantages. Scale intelligently.",
   };
 
