@@ -18,7 +18,8 @@ import {
   Navigation as NavigationIcon,
   Search,
   Activity,
-  RefreshCw
+  RefreshCw,
+  MessageSquareQuote
 } from 'lucide-react';
 import { Typography } from '@/components/ui/Typography';
 import { createClient } from '@/lib/supabase/client';
@@ -43,6 +44,7 @@ const MENU_GROUPS = [
     title: 'Platform',
     items: [
       { label: 'Page Content', icon: LayoutTemplate, href: '/admin/page-content' },
+      { label: 'Testimonials', icon: MessageSquareQuote, href: '/admin/testimonials' },
       { label: 'Media Library', icon: ImageIcon, href: '/admin/media' },
       { label: 'Navigation', icon: NavigationIcon, href: '/admin/navigation' },
       { label: 'SEO Manager', icon: Search, href: '/admin/seo' },
