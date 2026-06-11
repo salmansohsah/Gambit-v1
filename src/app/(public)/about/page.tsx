@@ -168,11 +168,11 @@ export default async function AboutPage() {
               <div className="flex flex-col space-y-4 border-t border-surface-elevated pt-8">
                  <Typography variant="label" className="text-text-secondary">Executive Contact</Typography>
                  {settings?.linkedin_url && (
-                   <Link href={settings.linkedin_url} target="_blank" className="text-sm font-semibold tracking-wide hover:text-accent-blue transition-colors">LinkedIn Profile &rarr;</Link>
+                   <Link href={settings.linkedin_url} target="_blank" className="text-sm font-semibold tracking-wide hover:text-accent-gold transition-colors">LinkedIn Profile &rarr;</Link>
                  )}
-                 <Link href="#" className="text-sm font-semibold tracking-wide hover:text-accent-blue transition-colors">Discord: @salmanalsawy &rarr;</Link>
+                 <Link href="#" className="text-sm font-semibold tracking-wide hover:text-accent-gold transition-colors">Discord: @salmanalsawy &rarr;</Link>
                  {settings?.contact_email && (
-                   <Link href={`mailto:${settings.contact_email}`} className="text-sm font-semibold tracking-wide hover:text-accent-blue transition-colors">{settings.contact_email} &rarr;</Link>
+                   <Link href={`mailto:${settings.contact_email}`} className="text-sm font-semibold tracking-wide hover:text-accent-gold transition-colors">{settings.contact_email} &rarr;</Link>
                  )}
               </div>
             </div>

@@ -37,7 +37,7 @@ export function Footer({ settings }: FooterProps) {
             <ul className="space-y-4">
               {links.map((link) => (
                 <li key={link.label}>
-                  <Link href={link.href} className="text-sm font-medium text-text-muted hover:text-accent-blue transition-colors">
+                  <Link href={link.href} className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
                     {link.label}
                   </Link>
                 </li>
@@ -50,7 +50,7 @@ export function Footer({ settings }: FooterProps) {
             <ul className="space-y-4">
               {settings?.contact_email && (
                 <li>
-                  <Link href={`mailto:${settings.contact_email}`} className="text-sm font-medium text-text-muted hover:text-accent-blue transition-colors break-all">
+                  <Link href={`mailto:${settings.contact_email}`} className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors break-all">
                     {settings.contact_email}
                   </Link>
                 </li>
@@ -66,7 +66,7 @@ export function Footer({ settings }: FooterProps) {
             <ul className="space-y-4">
               {settings?.linkedin_url ? (
                 <li>
-                  <Link href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-blue transition-colors">
+                  <Link href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
                     LinkedIn
                   </Link>
                 </li>
@@ -78,7 +78,7 @@ export function Footer({ settings }: FooterProps) {
               
               {settings?.twitter_url ? (
                 <li>
-                  <Link href={settings.twitter_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-blue transition-colors">
+                  <Link href={settings.twitter_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
                     Twitter
                   </Link>
                 </li>

@@ -115,7 +115,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
             placeholder="Search insights..." 
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full bg-surface-card border border-surface-elevated rounded-md pl-9 pr-4 py-2 text-sm focus:border-accent-blue outline-none transition-colors"
+            className="w-full bg-surface-card border border-surface-elevated rounded-md pl-9 pr-4 py-2 text-sm focus:border-accent-gold outline-none transition-colors"
           />
         </div>
 
@@ -126,7 +126,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
               onClick={() => openEditor(insight)}
               className={`p-4 rounded-md border cursor-pointer transition-colors ${
                 selectedInsight?.id === insight.id 
-                  ? 'bg-surface-elevated border-accent-blue' 
+                  ? 'bg-surface-elevated border-accent-gold' 
                   : 'bg-surface-panel border-surface-elevated hover:bg-surface-elevated/50'
               }`}
             >
@@ -182,7 +182,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     value={formData.title}
                     onChange={e => setFormData({...formData, title: e.target.value})}
                     placeholder="E.g. The Future of Serverless Architectures"
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 text-lg font-bold focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 text-lg font-bold focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
                 
@@ -192,7 +192,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     type="text" 
                     value={formData.slug}
                     onChange={e => setFormData({...formData, slug: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-mono text-sm focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-mono text-sm focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
 
@@ -202,7 +202,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     <select 
                       value={formData.author_id || ''}
                       onChange={e => setFormData({...formData, author_id: e.target.value})}
-                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     >
                       <option value="">Select Author...</option>
                       {teamMembers.map(member => (
@@ -215,7 +215,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     <select 
                       value={formData.category_id || ''}
                       onChange={e => setFormData({...formData, category_id: e.target.value})}
-                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     >
                       <option value="">Select Category...</option>
                       {categories.map(cat => (
@@ -231,7 +231,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     <select 
                       value={formData.status}
                       onChange={e => setFormData({...formData, status: e.target.value})}
-                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-semibold focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-semibold focus:border-accent-gold outline-none transition-colors"
                     >
                       <option value="Draft">Draft</option>
                       <option value="Review">Review</option>
@@ -244,7 +244,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                       type="number" 
                       value={formData.read_time_minutes || ''}
                       onChange={e => setFormData({...formData, read_time_minutes: parseInt(e.target.value) || 0})}
-                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -254,7 +254,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     type="checkbox" 
                     checked={formData.is_featured}
                     onChange={e => setFormData({...formData, is_featured: e.target.checked})}
-                    className="w-4 h-4 rounded bg-surface-base border-surface-elevated text-accent-blue"
+                    className="w-4 h-4 rounded bg-surface-base border-surface-elevated text-accent-gold"
                   />
                   <span className="text-sm font-medium text-text-primary">Feature this insight prominently</span>
                 </label>
@@ -267,7 +267,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     rows={3}
                     value={formData.summary || ''}
                     onChange={e => setFormData({...formData, summary: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -278,7 +278,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     rows={16}
                     value={formData.body_content || ''}
                     onChange={e => setFormData({...formData, body_content: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-4 font-mono text-sm leading-relaxed focus:border-accent-blue outline-none transition-colors custom-scrollbar"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-4 font-mono text-sm leading-relaxed focus:border-accent-gold outline-none transition-colors custom-scrollbar"
                     placeholder="## Introduction..."
                   />
                 </div>
@@ -293,7 +293,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     type="text" 
                     value={formData.cover_image_url || ''}
                     onChange={e => setFormData({...formData, cover_image_url: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-mono text-sm focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-mono text-sm focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
 
@@ -303,7 +303,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     type="text" 
                     value={formData.seo_title || ''}
                     onChange={e => setFormData({...formData, seo_title: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
 
@@ -313,7 +313,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                     rows={3}
                     value={formData.seo_description || ''}
                     onChange={e => setFormData({...formData, seo_description: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
               </div>

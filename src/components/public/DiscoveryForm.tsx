@@ -57,7 +57,7 @@ export function DiscoveryForm() {
     }
   };
 
-  const inputClassName = "w-full bg-surface-panel border border-surface-elevated rounded-lg px-4 py-3 text-sm text-obsidian placeholder:text-text-muted outline-none focus:border-accent-blue transition-colors";
+  const inputClassName = "w-full bg-surface-panel border border-surface-elevated rounded-lg px-4 py-3 text-sm text-obsidian placeholder:text-text-muted outline-none focus:border-accent-gold transition-colors";
   const errorClassName = "text-red-500 text-xs mt-1 block";
 
   if (formState === 'success') {

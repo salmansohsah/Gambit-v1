@@ -122,7 +122,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
               placeholder="Search by title or client..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-surface-card border border-surface-elevated rounded-md pl-9 pr-4 py-2 text-sm focus:border-accent-blue outline-none transition-colors"
+              className="w-full bg-surface-card border border-surface-elevated rounded-md pl-9 pr-4 py-2 text-sm focus:border-accent-gold outline-none transition-colors"
             />
           </div>
         </div>
@@ -158,8 +158,8 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                   </td>
                   <td className="px-6 py-4 text-sm text-text-muted">
                     <div className="flex gap-2">
-                      {project.is_featured_home && <span className="px-2 py-1 bg-accent-blue/10 text-accent-blue rounded text-xs">Home</span>}
-                      {project.is_featured_portfolio && <span className="px-2 py-1 bg-accent-blue/10 text-accent-blue rounded text-xs">Portfolio</span>}
+                      {project.is_featured_home && <span className="px-2 py-1 bg-accent-gold/10 text-accent-gold rounded text-xs">Home</span>}
+                      {project.is_featured_portfolio && <span className="px-2 py-1 bg-accent-gold/10 text-accent-gold rounded text-xs">Portfolio</span>}
                     </div>
                   </td>
                 </tr>
@@ -196,7 +196,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                   onClick={() => setActiveTab(tab)}
                   className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors whitespace-nowrap ${
                     activeTab === tab 
-                      ? 'border-accent-blue text-accent-blue' 
+                      ? 'border-accent-gold text-accent-gold' 
                       : 'border-transparent text-text-secondary hover:text-text-primary'
                   }`}
                 >
@@ -214,7 +214,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       type="text" 
                       value={formData.title}
                       onChange={e => setFormData({...formData, title: e.target.value})}
-                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors" 
+                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors" 
                     />
                   </div>
                   <div className="grid grid-cols-2 gap-6">
@@ -224,7 +224,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         type="text" 
                         value={formData.slug}
                         onChange={e => setFormData({...formData, slug: e.target.value})}
-                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors font-mono text-sm" 
+                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors font-mono text-sm" 
                       />
                     </div>
                     <div>
@@ -233,7 +233,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         type="text" 
                         value={formData.client_name || ''}
                         onChange={e => setFormData({...formData, client_name: e.target.value})}
-                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors" 
+                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors" 
                       />
                     </div>
                   </div>
@@ -242,7 +242,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                     <select 
                       value={formData.status}
                       onChange={e => setFormData({...formData, status: e.target.value})}
-                      className="w-full sm:w-64 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full sm:w-64 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     >
                       <option value="Draft">Draft</option>
                       <option value="Review">Review</option>
@@ -255,7 +255,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         type="checkbox" 
                         checked={formData.is_featured_home}
                         onChange={e => setFormData({...formData, is_featured_home: e.target.checked})}
-                        className="w-4 h-4 rounded bg-surface-card border-surface-elevated text-accent-blue"
+                        className="w-4 h-4 rounded bg-surface-card border-surface-elevated text-accent-gold"
                       />
                       <span className="text-sm font-medium">Featured on Home</span>
                     </label>
@@ -264,7 +264,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         type="checkbox" 
                         checked={formData.is_featured_portfolio}
                         onChange={e => setFormData({...formData, is_featured_portfolio: e.target.checked})}
-                        className="w-4 h-4 rounded bg-surface-card border-surface-elevated text-accent-blue"
+                        className="w-4 h-4 rounded bg-surface-card border-surface-elevated text-accent-gold"
                       />
                       <span className="text-sm font-medium">Featured on Portfolio</span>
                     </label>
@@ -280,7 +280,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       rows={3}
                       value={formData.summary || ''}
                       onChange={e => setFormData({...formData, summary: e.target.value})}
-                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -289,7 +289,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       rows={4}
                       value={formData.situation || ''}
                       onChange={e => setFormData({...formData, situation: e.target.value})}
-                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -298,7 +298,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       rows={4}
                       value={formData.objective || ''}
                       onChange={e => setFormData({...formData, objective: e.target.value})}
-                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     />
                   </div>
                   <div>
@@ -307,7 +307,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       rows={4}
                       value={formData.strategy || ''}
                       onChange={e => setFormData({...formData, strategy: e.target.value})}
-                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                      className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     />
                   </div>
                 </div>
@@ -323,7 +323,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         placeholder="e.g. 240%"
                         value={formData.outcome_metric || ''}
                         onChange={e => setFormData({...formData, outcome_metric: e.target.value})}
-                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 text-2xl font-bold focus:border-accent-blue outline-none transition-colors" 
+                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 text-2xl font-bold focus:border-accent-gold outline-none transition-colors" 
                       />
                     </div>
                     <div>
@@ -333,7 +333,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         placeholder="e.g. increase in conversion"
                         value={formData.outcome_label || ''}
                         onChange={e => setFormData({...formData, outcome_label: e.target.value})}
-                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors" 
+                        className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors" 
                       />
                     </div>
                   </div>
@@ -342,7 +342,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       type="checkbox" 
                       checked={formData.has_full_case_study}
                       onChange={e => setFormData({...formData, has_full_case_study: e.target.checked})}
-                      className="w-4 h-4 rounded bg-surface-card border-surface-elevated text-accent-blue"
+                      className="w-4 h-4 rounded bg-surface-card border-surface-elevated text-accent-gold"
                     />
                     <span className="text-sm font-medium">Has Full Case Study Available</span>
                   </label>
@@ -358,7 +358,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         type="text" 
                         value={formData.cover_image_url || ''}
                         onChange={e => setFormData({...formData, cover_image_url: e.target.value})}
-                        className="flex-1 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors font-mono text-sm" 
+                        className="flex-1 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors font-mono text-sm" 
                       />
                     </div>
                     {formData.cover_image_url && (
@@ -375,7 +375,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                         type="text" 
                         value={formData.evidence_image_url || ''}
                         onChange={e => setFormData({...formData, evidence_image_url: e.target.value})}
-                        className="flex-1 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors font-mono text-sm" 
+                        className="flex-1 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors font-mono text-sm" 
                       />
                     </div>
                     {formData.evidence_image_url && (

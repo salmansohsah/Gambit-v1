@@ -71,7 +71,7 @@ export default async function InsightsPage() {
             <div className="flex flex-wrap items-center gap-4">
               <Typography variant="label" className="text-text-secondary mr-4">Topics:</Typography>
               {categories.map((cat: any, i: number) => (
-                <span key={i} className="px-4 py-2 bg-surface-panel border border-surface-elevated rounded-full text-xs font-semibold tracking-wide uppercase text-obsidian hover:border-accent-blue transition-colors cursor-default">
+                <span key={i} className="px-4 py-2 bg-surface-panel border border-surface-elevated rounded-full text-xs font-semibold tracking-wide uppercase text-obsidian hover:border-accent-gold transition-colors cursor-default">
                   {cat.label}
                 </span>
               ))}
@@ -113,7 +113,7 @@ export default async function InsightsPage() {
                     {featuredInsight.summary}
                   </Typography>
                   <div className="pt-6 border-t border-surface-elevated">
-                    <Link href={`/insights/${featuredInsight.slug}`} className="inline-flex items-center text-sm font-bold uppercase tracking-widest text-obsidian hover:text-accent-blue transition-colors">
+                    <Link href={`/insights/${featuredInsight.slug}`} className="inline-flex items-center text-sm font-bold uppercase tracking-widest text-obsidian hover:text-accent-gold transition-colors">
                       Read Insight &rarr;
                     </Link>
                   </div>
@@ -146,7 +146,7 @@ export default async function InsightsPage() {
                     <Typography variant="body" className="mb-8">{insight.summary}</Typography>
                   </div>
                   <div className="border-t border-surface-elevated pt-6">
-                    <Link href={`/insights/${insight.slug}`} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent-blue hover:text-accent-gold transition-colors">
+                    <Link href={`/insights/${insight.slug}`} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent-gold hover:text-accent-gold transition-colors">
                       Read Insight &rarr;
                     </Link>
                   </div>

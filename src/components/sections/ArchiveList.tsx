@@ -17,11 +17,11 @@ export function ArchiveList({ moves }: { moves: any[] }) {
           <Panel key={i} theme="light" className="bg-surface-card h-full flex flex-col justify-between">
             <div>
               <div className="flex justify-between items-start mb-6">
-                <div>
+                <div className="min-w-0 flex-1 pr-4">
                   <Typography variant="label" className="block text-text-secondary mb-2 tracking-widest">
                     MOVE {(i + 1).toString().padStart(2, '0')}
                   </Typography>
-                  <Typography variant="h3">{move.title}</Typography>
+                  <Typography variant="h3" className="break-words">{move.title}</Typography>
                 </div>
               </div>
               <Typography variant="body" className="mb-8">{move.summary}</Typography>
@@ -37,7 +37,7 @@ export function ArchiveList({ moves }: { moves: any[] }) {
             <div className="border-t border-surface-elevated pt-6">
               <Typography variant="label" className="text-text-secondary block mb-1">Outcome</Typography>
               <Typography variant="h4" className="text-obsidian mb-6">{move.outcome_label}</Typography>
-              <Link href={`/portfolio/${move.slug}`} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent-blue hover:text-accent-gold transition-colors">
+              <Link href={`/portfolio/${move.slug}`} className="inline-flex items-center text-xs font-bold uppercase tracking-widest text-accent-gold hover:text-accent-gold transition-colors">
                 Explore Full Case Study &rarr;
               </Link>
             </div>

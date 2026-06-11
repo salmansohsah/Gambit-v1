@@ -87,7 +87,7 @@ export function Sidebar() {
                       <span className="text-sm font-medium">{item.label}</span>
                     </div>
                     {item.badge !== undefined && item.badge > 0 && (
-                      <span className="bg-accent-blue text-obsidian text-xs font-bold px-2 py-0.5 rounded-full">
+                      <span className="bg-accent-gold text-obsidian text-xs font-bold px-2 py-0.5 rounded-full">
                         {item.badge}
                       </span>
                     )}

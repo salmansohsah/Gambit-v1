@@ -33,7 +33,7 @@ export default function ContactPage() {
     { num: "04", title: "Next-Step Recommendation", desc: "A clear, prescriptive path forward—whether that includes GAMBIT or not." }
   ];
 
-  const inputClassName = "w-full bg-surface-panel border border-surface-elevated rounded-lg px-4 py-3 text-sm text-obsidian placeholder:text-text-muted outline-none focus:border-accent-blue transition-colors";
+  const inputClassName = "w-full bg-surface-panel border border-surface-elevated rounded-lg px-4 py-3 text-sm text-obsidian placeholder:text-text-muted outline-none focus:border-accent-gold transition-colors";
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -111,7 +111,7 @@ export default function ContactPage() {
                 <div className="space-y-8">
                   <div>
                     <Typography variant="h4" className="mb-2">Official Email</Typography>
-                    <Link href="mailto:salmanalsawyofficial@gmail.com" className="text-sm font-semibold tracking-wide text-text-primary hover:text-accent-blue transition-colors break-words">
+                    <Link href="mailto:salmanalsawyofficial@gmail.com" className="text-sm font-semibold tracking-wide text-text-primary hover:text-accent-gold transition-colors break-words">
                       salmanalsawyofficial@gmail.com &rarr;
                     </Link>
                   </div>

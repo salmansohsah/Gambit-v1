@@ -32,11 +32,11 @@ export function FrameworkSection({ content, capabilities = [] }: FrameworkSectio
         {displayCapabilities.map((cap, i) => (
           <div key={cap.title} className="col-span-1 md:col-span-6 lg:col-span-4">
             <Card interactive className="h-full group relative overflow-hidden">
-              <div className="absolute bottom-0 left-0 w-full h-1 bg-surface-elevated transform translate-y-full group-hover:translate-y-0 group-hover:bg-accent-blue transition-all duration-300"></div>
+              <div className="absolute bottom-0 left-0 w-full h-1 bg-surface-elevated transform translate-y-full group-hover:translate-y-0 group-hover:bg-accent-gold transition-all duration-300"></div>
               
               <div className="flex justify-between items-start mb-8">
-                <div className="w-10 h-10 border border-surface-elevated rounded flex items-center justify-center group-hover:border-accent-blue transition-colors">
-                  <div className="w-3 h-3 bg-surface-elevated group-hover:bg-accent-blue transition-colors"></div>
+                <div className="w-10 h-10 border border-surface-elevated rounded flex items-center justify-center group-hover:border-accent-gold transition-colors">
+                  <div className="w-3 h-3 bg-surface-elevated group-hover:bg-accent-gold transition-colors"></div>
                 </div>
                 <Typography variant="label" className="text-text-muted font-mono">{`0${i+1}`}</Typography>
               </div>

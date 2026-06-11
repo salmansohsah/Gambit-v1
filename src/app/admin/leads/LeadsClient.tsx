@@ -81,7 +81,7 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
               placeholder="Search by name or org..." 
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="w-full bg-surface-card border border-surface-elevated rounded-md pl-9 pr-4 py-2 text-sm focus:border-accent-blue outline-none transition-colors"
+              className="w-full bg-surface-card border border-surface-elevated rounded-md pl-9 pr-4 py-2 text-sm focus:border-accent-gold outline-none transition-colors"
             />
           </div>
           <div className="flex items-center gap-2 w-full sm:w-auto">
@@ -89,7 +89,7 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
             <select 
               value={filterStatus}
               onChange={(e) => setFilterStatus(e.target.value)}
-              className="bg-surface-card border border-surface-elevated rounded-md px-3 py-2 text-sm focus:border-accent-blue outline-none transition-colors w-full sm:w-auto"
+              className="bg-surface-card border border-surface-elevated rounded-md px-3 py-2 text-sm focus:border-accent-gold outline-none transition-colors w-full sm:w-auto"
             >
               <option value="All">All Statuses</option>
               <option value="new">New</option>
@@ -209,7 +209,7 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
                 <div>
                   <Typography variant="label" className="text-text-secondary uppercase tracking-widest text-xs mb-2 block">Pipeline Status</Typography>
                   <select 
-                    className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 text-sm focus:border-accent-blue outline-none transition-colors font-medium disabled:opacity-50"
+                    className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 text-sm focus:border-accent-gold outline-none transition-colors font-medium disabled:opacity-50"
                     value={selectedLead.status}
                     onChange={(e) => handleStatusChange(e.target.value)}
                     disabled={isPending}
@@ -226,7 +226,7 @@ export default function LeadsClient({ initialLeads }: { initialLeads: any[] }) {
                   <Typography variant="label" className="text-text-secondary uppercase tracking-widest text-xs mb-2 block">Internal Notes</Typography>
                   <textarea 
                     rows={8}
-                    className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 text-sm focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-card border border-surface-elevated rounded-md px-4 py-3 text-sm focus:border-accent-gold outline-none transition-colors"
                     placeholder="Add operational notes here. Auto-saves on blur."
                     value={internalNotes}
                     onChange={handleNotesChange}

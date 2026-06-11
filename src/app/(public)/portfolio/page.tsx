@@ -83,7 +83,7 @@ export default async function PortfolioPage() {
                     <Typography variant="h3" className="mb-2">The Outcome</Typography>
                     <Typography variant="h2" className="text-text-primary">{flagshipMove.outcome_metric}</Typography>
                     <Typography variant="body-sm" className="mb-8">{flagshipMove.outcome_label}</Typography>
-                    <Link href={`/portfolio/${flagshipMove.slug}`} className="inline-flex items-center text-sm font-bold uppercase tracking-widest text-accent-blue hover:text-accent-gold transition-colors">
+                    <Link href={`/portfolio/${flagshipMove.slug}`} className="inline-flex items-center text-sm font-bold uppercase tracking-widest text-accent-gold hover:text-accent-gold transition-colors">
                       Explore Full Case Study &rarr;
                     </Link>
                   </div>
@@ -112,19 +112,19 @@ export default async function PortfolioPage() {
             </div>
             <div className="col-span-12 md:col-span-8">
               <Grid columns={2} gap="lg">
-                <Panel theme="light" className="bg-surface-panel">
+                <Panel theme="light" className="bg-surface-panel flex flex-col items-center justify-center text-center py-12">
                   <Typography variant="hero" className="text-text-primary mb-2">1,000+</Typography>
                   <Typography variant="h4">Deployments</Typography>
                 </Panel>
-                <Panel theme="light" className="bg-surface-panel">
+                <Panel theme="light" className="bg-surface-panel flex flex-col items-center justify-center text-center py-12">
                   <Typography variant="hero" className="text-text-primary mb-2">10+</Typography>
                   <Typography variant="h4">Years Experience</Typography>
                 </Panel>
-                <Panel theme="light" className="bg-surface-panel">
+                <Panel theme="light" className="bg-surface-panel flex flex-col items-center justify-center text-center py-12">
                   <Typography variant="hero" className="text-text-primary mb-2">3.5x</Typography>
                   <Typography variant="h4">Avg. Conversion Lift</Typography>
                 </Panel>
-                <Panel theme="light" className="bg-surface-panel">
+                <Panel theme="light" className="bg-surface-panel flex flex-col items-center justify-center text-center py-12">
                   <Typography variant="hero" className="text-text-primary mb-2">99%</Typography>
                   <Typography variant="h4">Operational Certainty</Typography>
                 </Panel>

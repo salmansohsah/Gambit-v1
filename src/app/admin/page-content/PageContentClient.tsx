@@ -84,7 +84,7 @@ export default function PageContentClient({ initialContent }: { initialContent: 
                   onClick={() => openEditor(item)}
                   className={`p-3 rounded-md border cursor-pointer transition-colors ${
                     selectedItem?.id === item.id 
-                      ? 'bg-surface-elevated border-accent-blue' 
+                      ? 'bg-surface-elevated border-accent-gold' 
                       : 'bg-surface-panel border-surface-elevated hover:bg-surface-elevated/50'
                   }`}
                 >
@@ -128,7 +128,7 @@ export default function PageContentClient({ initialContent }: { initialContent: 
                     rows={12}
                     value={formData.value_text || ''}
                     onChange={e => setFormData({...formData, value_text: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-4 focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-4 focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
               ) : selectedItem.page_content_schema?.type === 'json' ? (
@@ -138,7 +138,7 @@ export default function PageContentClient({ initialContent }: { initialContent: 
                     rows={20}
                     value={formData.value_json || ''}
                     onChange={e => setFormData({...formData, value_json: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-4 font-mono text-sm focus:border-accent-blue outline-none transition-colors custom-scrollbar"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-4 font-mono text-sm focus:border-accent-gold outline-none transition-colors custom-scrollbar"
                   />
                   <Typography variant="body-sm" className="text-amber-500 mt-2">
                     Ensure the JSON is perfectly formatted. It must be valid.

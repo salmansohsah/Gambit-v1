@@ -54,7 +54,7 @@ export default async function DashboardPage() {
           <Panel theme="light" className="bg-surface-panel border-surface-elevated">
             <div className="flex items-center justify-between p-6 border-b border-surface-elevated">
               <Typography variant="h4">Active Pipeline</Typography>
-              <Link href="/admin/leads" className="text-sm font-semibold text-accent-gold hover:text-accent-blue transition-colors flex items-center gap-2">
+              <Link href="/admin/leads" className="text-sm font-semibold text-accent-gold hover:text-accent-gold transition-colors flex items-center gap-2">
                 View All <ArrowRight className="w-4 h-4" />
               </Link>
             </div>

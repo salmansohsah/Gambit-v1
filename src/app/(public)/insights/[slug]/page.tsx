@@ -137,7 +137,7 @@ export default async function InsightPage({ params }: PageProps) {
                           prose-h2:mt-16 prose-h2:mb-6 prose-h2:text-3xl
                           prose-h3:mt-10 prose-h3:mb-4 prose-h3:text-2xl
                           prose-p:mb-8 prose-p:leading-relaxed
-                          prose-a:text-accent-blue prose-a:no-underline hover:prose-a:underline
+                          prose-a:text-accent-gold prose-a:no-underline hover:prose-a:underline
                           prose-strong:text-text-primary
                           prose-ul:list-disc prose-ul:pl-6 prose-li:mb-2
                           prose-ol:list-decimal prose-ol:pl-6

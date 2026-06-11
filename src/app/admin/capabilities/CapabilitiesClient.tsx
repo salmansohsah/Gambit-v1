@@ -104,7 +104,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
               onClick={() => openEditor(cap)}
               className={`p-4 flex items-center justify-between rounded-md border cursor-pointer transition-colors ${
                 selectedCap?.id === cap.id
-                  ? 'bg-surface-elevated border-accent-blue' 
+                  ? 'bg-surface-elevated border-accent-gold' 
                   : 'bg-surface-panel border-surface-elevated hover:bg-surface-elevated/50'
               }`}
             >
@@ -158,7 +158,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                     type="text" 
                     value={formData.label}
                     onChange={e => setFormData({...formData, label: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
                 <div>
@@ -167,7 +167,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                     type="text" 
                     value={formData.slug}
                     onChange={e => setFormData({...formData, slug: e.target.value})}
-                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-mono text-sm focus:border-accent-blue outline-none transition-colors"
+                    className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-mono text-sm focus:border-accent-gold outline-none transition-colors"
                   />
                 </div>
               </div>
@@ -178,7 +178,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                   rows={4}
                   value={formData.description || ''}
                   onChange={e => setFormData({...formData, description: e.target.value})}
-                  className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                  className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                 />
               </div>
 
@@ -188,7 +188,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                   <button onClick={() => {
                     const current = Array.isArray(formData.bullet_points) ? formData.bullet_points : [];
                     setFormData({...formData, bullet_points: [...current, '']});
-                  }} className="text-accent-blue flex items-center gap-1 hover:underline">
+                  }} className="text-accent-gold flex items-center gap-1 hover:underline">
                     <Plus className="w-3 h-3" /> Add Point
                   </button>
                 </Typography>
@@ -203,7 +203,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                           newBps[idx] = e.target.value;
                           setFormData({...formData, bullet_points: newBps});
                         }}
-                        className="flex-1 bg-surface-base border border-surface-elevated rounded-md px-4 py-2 text-sm focus:border-accent-blue outline-none transition-colors"
+                        className="flex-1 bg-surface-base border border-surface-elevated rounded-md px-4 py-2 text-sm focus:border-accent-gold outline-none transition-colors"
                       />
                       <button 
                         onClick={() => {
@@ -231,7 +231,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                       type="checkbox" 
                       checked={formData.is_active}
                       onChange={e => setFormData({...formData, is_active: e.target.checked})}
-                      className="w-4 h-4 rounded bg-surface-base border-surface-elevated text-accent-blue"
+                      className="w-4 h-4 rounded bg-surface-base border-surface-elevated text-accent-gold"
                     />
                     <span className="text-sm font-medium">Active (Visible on frontend)</span>
                   </label>
@@ -240,7 +240,7 @@ export default function CapabilitiesClient({ initialCapabilities }: { initialCap
                       type="checkbox" 
                       checked={formData.is_standalone_page}
                       onChange={e => setFormData({...formData, is_standalone_page: e.target.checked})}
-                      className="w-4 h-4 rounded bg-surface-base border-surface-elevated text-accent-blue"
+                      className="w-4 h-4 rounded bg-surface-base border-surface-elevated text-accent-gold"
                     />
                     <span className="text-sm font-medium">Has Standalone Dedicated Page</span>
                   </label>

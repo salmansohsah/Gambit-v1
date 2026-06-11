@@ -10,13 +10,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 interface PageProps {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
   if (!project) return {};
   
   const title = `${project.title} | Portfolio | GAMBIT`;
@@ -49,7 +50,8 @@ export async function generateStaticParams() {
 }
 
 export default async function ProjectPage({ params }: PageProps) {
-  const project = await getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = await getProjectBySlug(slug);
 
   if (!project) {
     notFound();

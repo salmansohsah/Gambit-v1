@@ -52,10 +52,10 @@ export function EndgameSection({ content }: EndgameSectionProps) {
               <Typography variant="h4" className="mb-6">{content?.form_title || 'Start The Conversation'}</Typography>
               <form className="space-y-6" onSubmit={handleSubmit}>
                 <div>
-                  <input required type="text" placeholder="Full Name" className="w-full bg-transparent border-b border-surface-elevated py-4 text-obsidian placeholder:text-text-muted focus:outline-none focus:border-accent-blue transition-colors rounded-none" />
+                  <input required type="text" placeholder="Full Name" className="w-full bg-transparent border-b border-surface-elevated py-4 text-obsidian placeholder:text-text-muted focus:outline-none focus:border-accent-gold transition-colors rounded-none" />
                 </div>
                 <div>
-                  <input required type="text" placeholder="Organization" className="w-full bg-transparent border-b border-surface-elevated py-4 text-obsidian placeholder:text-text-muted focus:outline-none focus:border-accent-blue transition-colors rounded-none" />
+                  <input required type="text" placeholder="Organization" className="w-full bg-transparent border-b border-surface-elevated py-4 text-obsidian placeholder:text-text-muted focus:outline-none focus:border-accent-gold transition-colors rounded-none" />
                 </div>
                 <div className="pt-4">
                   {formState === 'success' ? (

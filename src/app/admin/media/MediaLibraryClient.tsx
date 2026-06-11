@@ -113,7 +113,7 @@ export default function MediaLibraryClient({ initialFiles }: { initialFiles: any
                     href={file.publicUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="p-2 bg-surface-base rounded-md text-text-primary hover:text-accent-blue transition-colors"
+                    className="p-2 bg-surface-base rounded-md text-text-primary hover:text-accent-gold transition-colors"
                     title="Open in new tab"
                   >
                     <LinkIcon className="w-4 h-4" />

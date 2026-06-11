@@ -67,7 +67,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
         {/* General Info */}
         <Panel theme="light" className="p-6 bg-surface-panel border-surface-elevated space-y-6">
           <div className="flex items-center gap-2 border-b border-surface-elevated pb-4 mb-2">
-            <Layout className="w-5 h-5 text-accent-blue" />
+            <Layout className="w-5 h-5 text-accent-gold" />
             <Typography variant="h4">General Information</Typography>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -77,7 +77,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="text" 
                 value={formData.site_name || ''}
                 onChange={e => setFormData({...formData, site_name: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -86,7 +86,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="text" 
                 value={formData.tagline || ''}
                 onChange={e => setFormData({...formData, tagline: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -96,7 +96,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 value={formData.nav_cta_label || ''}
                 onChange={e => setFormData({...formData, nav_cta_label: e.target.value})}
                 placeholder="E.g. Let's Talk"
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -106,7 +106,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 value={formData.nav_cta_url || ''}
                 onChange={e => setFormData({...formData, nav_cta_url: e.target.value})}
                 placeholder="E.g. /contact"
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
         {/* Contact & Integrations */}
         <Panel theme="light" className="p-6 bg-surface-panel border-surface-elevated space-y-6">
           <div className="flex items-center gap-2 border-b border-surface-elevated pb-4 mb-2">
-            <Mail className="w-5 h-5 text-accent-blue" />
+            <Mail className="w-5 h-5 text-accent-gold" />
             <Typography variant="h4">Contact & Scheduling</Typography>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -125,7 +125,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="email" 
                 value={formData.contact_email || ''}
                 onChange={e => setFormData({...formData, contact_email: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -134,7 +134,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="url" 
                 value={formData.scheduling_url || ''}
                 onChange={e => setFormData({...formData, scheduling_url: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
           </div>
@@ -143,7 +143,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
         {/* Global SEO */}
         <Panel theme="light" className="p-6 bg-surface-panel border-surface-elevated space-y-6">
           <div className="flex items-center gap-2 border-b border-surface-elevated pb-4 mb-2">
-            <Globe className="w-5 h-5 text-accent-blue" />
+            <Globe className="w-5 h-5 text-accent-gold" />
             <Typography variant="h4">Global SEO Defaults</Typography>
           </div>
           <div className="space-y-6">
@@ -153,7 +153,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="text" 
                 value={formData.seo_default_title || ''}
                 onChange={e => setFormData({...formData, seo_default_title: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -162,7 +162,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 rows={3}
                 value={formData.seo_default_description || ''}
                 onChange={e => setFormData({...formData, seo_default_description: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
           </div>
@@ -171,7 +171,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
         {/* Social Links */}
         <Panel theme="light" className="p-6 bg-surface-panel border-surface-elevated space-y-6">
           <div className="flex items-center gap-2 border-b border-surface-elevated pb-4 mb-2">
-            <Share2 className="w-5 h-5 text-accent-blue" />
+            <Share2 className="w-5 h-5 text-accent-gold" />
             <Typography variant="h4">Social Media Links</Typography>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -181,7 +181,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="url" 
                 value={formData.linkedin_url || ''}
                 onChange={e => setFormData({...formData, linkedin_url: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -190,7 +190,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="url" 
                 value={formData.twitter_url || ''}
                 onChange={e => setFormData({...formData, twitter_url: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -199,7 +199,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="url" 
                 value={formData.facebook_url || ''}
                 onChange={e => setFormData({...formData, facebook_url: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
             <div>
@@ -208,7 +208,7 @@ export default function SettingsClient({ initialSettings }: { initialSettings: a
                 type="url" 
                 value={formData.instagram_url || ''}
                 onChange={e => setFormData({...formData, instagram_url: e.target.value})}
-                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-blue outline-none transition-colors"
+                className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
               />
             </div>
           </div>

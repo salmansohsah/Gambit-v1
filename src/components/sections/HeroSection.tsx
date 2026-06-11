@@ -35,10 +35,10 @@ export function HeroSection({ content }: HeroSectionProps) {
           </Typography>
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
-            <Link href="/contact" passHref legacyBehavior>
+            <Link href="/contact">
               <Button variant="primary">{content?.cta_primary || 'Make Your Next Move'}</Button>
             </Link>
-            <Link href="/portfolio" passHref legacyBehavior>
+            <Link href="/portfolio">
               <Button variant="text">{content?.cta_secondary || 'View Recent Moves \u2192'}</Button>
             </Link>
           </div>
@@ -50,7 +50,7 @@ export function HeroSection({ content }: HeroSectionProps) {
             <div className="absolute inset-0 bg-gradient-to-br from-transparent to-[#F4F4F5] opacity-50"></div>
             <Typography variant="label" className="text-text-muted relative z-10">Live Signal</Typography>
             <div className="h-1 w-full bg-surface-elevated relative z-10 overflow-hidden rounded-full">
-              <div className="h-full bg-accent-blue w-1/3 group-hover:w-full transition-all duration-1000 ease-in-out"></div>
+              <div className="h-full bg-accent-gold w-1/3 group-hover:w-full transition-all duration-1000 ease-in-out"></div>
             </div>
           </div>
         </div>
