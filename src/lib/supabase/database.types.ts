@@ -327,6 +327,48 @@ export type Database = {
           },
         ]
       }
+      navigation_items: {
+        Row: {
+          created_at: string | null
+          display_order: number
+          href: string
+          icon_name: string | null
+          id: string
+          is_active: boolean | null
+          is_external: boolean | null
+          label: string
+          menu_type: string
+          target: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          display_order?: number
+          href: string
+          icon_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_external?: boolean | null
+          label: string
+          menu_type: string
+          target?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          display_order?: number
+          href?: string
+          icon_name?: string | null
+          id?: string
+          is_active?: boolean | null
+          is_external?: boolean | null
+          label?: string
+          menu_type?: string
+          target?: string | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       page_content: {
         Row: {
           id: string
@@ -512,6 +554,72 @@ export type Database = {
           summary?: string | null
           title?: string
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      seo_overrides: {
+        Row: {
+          canonical_url: string | null
+          created_at: string
+          description: string | null
+          id: string
+          is_active: boolean | null
+          keywords: string | null
+          nofollow: boolean | null
+          noindex: boolean | null
+          og_description: string | null
+          og_image: string | null
+          og_title: string | null
+          page_path: string
+          structured_data_json: Json | null
+          title: string | null
+          twitter_card: string | null
+          twitter_description: string | null
+          twitter_image: string | null
+          twitter_title: string | null
+          updated_at: string
+        }
+        Insert: {
+          canonical_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          keywords?: string | null
+          nofollow?: boolean | null
+          noindex?: boolean | null
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          page_path: string
+          structured_data_json?: Json | null
+          title?: string | null
+          twitter_card?: string | null
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_title?: string | null
+          updated_at?: string
+        }
+        Update: {
+          canonical_url?: string | null
+          created_at?: string
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          keywords?: string | null
+          nofollow?: boolean | null
+          noindex?: boolean | null
+          og_description?: string | null
+          og_image?: string | null
+          og_title?: string | null
+          page_path?: string
+          structured_data_json?: Json | null
+          title?: string | null
+          twitter_card?: string | null
+          twitter_description?: string | null
+          twitter_image?: string | null
+          twitter_title?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

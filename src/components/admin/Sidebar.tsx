@@ -14,7 +14,11 @@ import {
   UserCheck, 
   Settings,
   LogOut,
-  Trash2
+  Trash2,
+  Navigation as NavigationIcon,
+  Search,
+  Activity,
+  RefreshCw
 } from 'lucide-react';
 import { Typography } from '@/components/ui/Typography';
 import { createClient } from '@/lib/supabase/client';
@@ -40,6 +44,10 @@ const MENU_GROUPS = [
     items: [
       { label: 'Page Content', icon: LayoutTemplate, href: '/admin/page-content' },
       { label: 'Media Library', icon: ImageIcon, href: '/admin/media' },
+      { label: 'Navigation', icon: NavigationIcon, href: '/admin/navigation' },
+      { label: 'SEO Manager', icon: Search, href: '/admin/seo' },
+      { label: 'Audit Log', icon: Activity, href: '/admin/audit' },
+      { label: 'Sync Center', icon: RefreshCw, href: '/admin/sync' },
       { label: 'Team', icon: UserCheck, href: '/admin/team' },
       { label: 'Site Settings', icon: Settings, href: '/admin/settings' },
       { label: 'Trash', icon: Trash2, href: '/admin/trash' },

@@ -4,7 +4,7 @@ import React, { useState, useTransition } from 'react';
 import { Typography } from '@/components/ui/Typography';
 import { Panel } from '@/components/ui/Panel';
 import { Button } from '@/components/ui/Button';
-import { Search, Plus, X, Upload, Check } from 'lucide-react';
+import { Check, Plus, Trash2, X, Search, Globe, FileText, CheckCircle2, History } from 'lucide-react';
 import { createProject, updateProject, deleteProject } from '@/app/actions/portfolio';
 import { useRouter } from 'next/navigation';
 
@@ -42,7 +42,7 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
         strategy: '',
         outcome_label: '',
         outcome_metric: '',
-        status: 'Draft',
+        status: 'draft',
         cover_image_url: '',
         evidence_image_url: '',
         is_featured_home: false,
@@ -148,9 +148,10 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                     <div className="text-sm text-text-muted">{project.client_name || 'No Client'}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                      project.status === 'Published' ? 'bg-green-500/10 text-green-500 border border-green-500/20' :
-                      project.status === 'Review' ? 'bg-amber-500/10 text-amber-500 border border-amber-500/20' :
+                    <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium capitalize ${
+                      project.status === 'published' ? 'bg-green-500/10 text-green-500 border border-green-500/20' :
+                      project.status === 'review' ? 'bg-blue-500/10 text-blue-500 border border-blue-500/20' :
+                      project.status === 'archived' ? 'bg-red-500/10 text-red-500 border border-red-500/20' :
                       'bg-surface-elevated text-text-secondary border border-surface-elevated'
                     }`}>
                       {project.status}
@@ -182,10 +183,51 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
             <div className="sticky top-0 bg-surface-base/90 backdrop-blur-md border-b border-surface-elevated px-6 py-4 flex items-center justify-between z-10">
               <Typography variant="h3">{isCreating ? 'New Project' : 'Edit Project'}</Typography>
               <div className="flex items-center gap-3">
+                {!isCreating && (
+                  <Button variant="outline" className="text-text-secondary border-surface-elevated hover:bg-surface-elevated" onClick={() => router.push(`/admin/portfolio/${selectedProject.id}/history`)}>
+                    <History className="w-4 h-4 mr-2" /> History
+                  </Button>
+                )}
                 <Button variant="outline" onClick={closeEditor} disabled={isPending}>Cancel</Button>
-                <Button onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
-                  <Check className="w-4 h-4" /> Save
-                </Button>
+                
+                {isCreating ? (
+                  <Button onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
+                    <Check className="w-4 h-4" /> Create Draft
+                  </Button>
+                ) : (
+                  <div className="flex items-center gap-2 bg-surface-elevated/30 p-1 rounded-md">
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'draft' ? 'default' : 'ghost'} 
+                      onClick={() => { setFormData({...formData, status: 'draft'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Draft</Button>
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'review' ? 'default' : 'ghost'} 
+                      onClick={() => { setFormData({...formData, status: 'review'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Review</Button>
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'published' ? 'default' : 'ghost'} 
+                      className={formData.status === 'published' ? 'bg-green-600 hover:bg-green-700 text-white' : ''}
+                      onClick={() => { setFormData({...formData, status: 'published'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Publish</Button>
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'archived' ? 'default' : 'ghost'} 
+                      className={formData.status === 'archived' ? 'bg-amber-600 hover:bg-amber-700 text-white' : ''}
+                      onClick={() => { setFormData({...formData, status: 'archived'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Archive</Button>
+                    <div className="w-px h-6 bg-surface-elevated mx-1" />
+                    <Button size="sm" onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
+                      <Check className="w-4 h-4" /> Save
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -244,9 +286,10 @@ export default function PortfolioClient({ initialProjects }: { initialProjects: 
                       onChange={e => setFormData({...formData, status: e.target.value})}
                       className="w-full sm:w-64 bg-surface-card border border-surface-elevated rounded-md px-4 py-3 focus:border-accent-gold outline-none transition-colors"
                     >
-                      <option value="Draft">Draft</option>
-                      <option value="Review">Review</option>
-                      <option value="Published">Published</option>
+                      <option value="draft">Draft</option>
+                      <option value="review">Review</option>
+                      <option value="published">Published</option>
+                      <option value="archived">Archived</option>
                     </select>
                   </div>
                   <div className="flex gap-6 pt-4">

@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useState } from 'react';
+import React from 'react';
 import { Section } from '@/components/layout/Section';
 import { Grid } from '@/components/layout/Grid';
 import { Typography } from '@/components/ui/Typography';
@@ -9,6 +7,18 @@ import { Button } from '@/components/ui/Button';
 import { ProcessSection } from '@/components/sections/SharedProcessSection';
 import Link from 'next/link';
 import { DiscoveryForm } from '@/components/public/DiscoveryForm';
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+import { Metadata } from 'next';
+
+export async function generateMetadata(): Promise<Metadata> {
+  return mergeSeoMetadata('/contact', {
+    title: "Contact | GAMBIT",
+    description: "Clarity before commitment. Schedule a strategic assessment.",
+    alternates: {
+      canonical: '/contact'
+    }
+  });
+}
 
 export default function ContactPage() {
 

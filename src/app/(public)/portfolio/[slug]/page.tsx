@@ -15,6 +15,8 @@ interface PageProps {
   }>;
 }
 
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const project = await getProjectBySlug(slug);
@@ -24,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = project.summary || "Strategic Move Case Study.";
   const images = project.cover_image_url ? [project.cover_image_url] : [];
 
-  return {
+  return mergeSeoMetadata(`/portfolio/${slug}`, {
     title,
     description,
     openGraph: {
@@ -38,8 +40,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       images,
+    },
+    alternates: {
+      canonical: `/portfolio/${slug}`
     }
-  };
+  });
 }
 
 export async function generateStaticParams() {

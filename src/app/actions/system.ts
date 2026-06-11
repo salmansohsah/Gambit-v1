@@ -44,8 +44,11 @@ export async function deleteCapability(id: string) {
 // PAGE CONTENT
 // ==========================================
 const pageContentSchema = z.object({
-  value_text: z.string().nullable(),
-  value_json: z.any().nullable(),
+  value_text: z.string().nullable().optional(),
+  value_json: z.any().nullable().optional(),
+  draft_value_text: z.string().nullable().optional(),
+  draft_value_json: z.any().nullable().optional(),
+  status: z.enum(['draft', 'review', 'published', 'archived']).optional(),
 });
 
 export async function updatePageContent(id: string, formData: any) {
@@ -87,6 +90,43 @@ export async function updateSiteSettings(id: number, formData: any) {
   const result = await updateAction('site_settings', id, parsed.data, { tags: ['site_settings'] });
   if (result.success) {
     revalidatePath('/admin/settings');
+    revalidatePath('/', 'layout');
+  }
+  return result;
+}
+
+// ==========================================
+// REVISIONS
+// ==========================================
+export async function restoreRevisionAction(revision_id: string, entity_type: string, entity_id: string) {
+  const { restoreRevision } = await import('@/lib/dal/revisions');
+  const result = await restoreRevision(revision_id, entity_type, entity_id);
+  if (result.success) {
+    if (entity_type === 'project') revalidatePath('/admin/portfolio');
+    if (entity_type === 'insight') revalidatePath('/admin/insights');
+    if (entity_type === 'page_content') revalidatePath('/admin/page-content');
+  }
+  return result;
+}
+
+// ==========================================
+// SNAPSHOTS
+// ==========================================
+export async function createSnapshotAction(label: string) {
+  const { createSnapshot } = await import('@/lib/dal/snapshots');
+  const result = await createSnapshot(label, 'manual');
+  if (result.success) {
+    revalidatePath('/admin/sync');
+  }
+  return result;
+}
+
+export async function restoreSnapshotAction(snapshot_id: string) {
+  const { restoreSnapshot } = await import('@/lib/dal/snapshots');
+  const result = await restoreSnapshot(snapshot_id);
+  if (result.success) {
+    // The restore triggers global revalidation inside the DAL
+    revalidatePath('/admin/sync');
     revalidatePath('/', 'layout');
   }
   return result;

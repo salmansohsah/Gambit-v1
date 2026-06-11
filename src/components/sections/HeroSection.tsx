@@ -31,7 +31,7 @@ export function HeroSection({ content }: HeroSectionProps) {
             {content?.headline || 'YOUR MARKET\nIS A BOARD.'}
           </Typography>
           <Typography variant="body" className="max-w-2xl mb-12">
-            {content?.subheadline || 'Most businesses react. The best businesses create positions. We help them do both. We build the architecture for lasting competitive advantage.'}
+            {content?.subheadline || 'We build the architecture for lasting competitive advantage. Our integrated teams deliver elite strategy, branding, software engineering, and AI systems to help you scale intelligently.'}
           </Typography>
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">

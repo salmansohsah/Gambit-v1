@@ -24,8 +24,8 @@ export function FrameworkSection({ content, capabilities = [] }: FrameworkSectio
   return (
     <Section>
       <div className="mb-20">
-        <Typography variant="label" className="mb-4 block">{content?.badge || 'The Framework'}</Typography>
-        <Typography variant="h2" className="whitespace-pre-line">{content?.headline || 'Every Position Matters.'}</Typography>
+        <Typography variant="label" className="mb-4 block">{content?.badge || 'Our Capabilities'}</Typography>
+        <Typography variant="h2" className="whitespace-pre-line">{content?.headline || 'End-to-end technical and strategic execution.'}</Typography>
       </div>
 
       <Grid columns={12} gap="md">

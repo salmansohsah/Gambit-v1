@@ -19,12 +19,12 @@ export async function getDashboardMetrics() {
   const { count: pendingInsights } = await supabase
     .from('insights')
     .select('*', { count: 'exact', head: true })
-    .in('status', ['Review', 'Draft']);
+    .in('status', ['review', 'draft']);
 
   const { count: pendingProjects } = await supabase
     .from('projects')
     .select('*', { count: 'exact', head: true })
-    .in('status', ['Review', 'Draft']);
+    .in('status', ['review', 'draft']);
 
   const pendingReviewsCount = (pendingInsights || 0) + (pendingProjects || 0);
 
@@ -32,7 +32,7 @@ export async function getDashboardMetrics() {
   const { count: publishedMovesCount } = await supabase
     .from('projects')
     .select('*', { count: 'exact', head: true })
-    .eq('status', 'Published');
+    .eq('status', 'published');
 
   return {
     newLeads: newLeadsCount || 0,
@@ -67,13 +67,13 @@ export async function getPendingDrafts() {
   const { data: insights } = await supabase
     .from('insights')
     .select('id, title, status, author:team_members(full_name)')
-    .in('status', ['Review', 'Draft'])
+    .in('status', ['review', 'draft'])
     .limit(3);
 
   const { data: projects } = await supabase
     .from('projects')
     .select('id, title, status, client_name')
-    .in('status', ['Review', 'Draft'])
+    .in('status', ['review', 'draft'])
     .limit(3);
 
   const drafts = [];
@@ -206,4 +206,32 @@ export async function getAdminTrash() {
   }
 
   return trash.sort((a, b) => new Date(b.deleted_at).getTime() - new Date(a.deleted_at).getTime());
+}
+
+// Fetch System Health (Supabase connection + Last Snapshot)
+export async function getSystemHealth() {
+  const supabase = await createClient();
+  const { error } = await supabase.from('site_settings').select('id').limit(1);
+  return {
+    supabaseHealthy: !error,
+    lastSnapshot: null, // Sprint 2 feature
+  };
+}
+
+// Fetch SEO Health
+export async function getSeoHealth() {
+  const supabase = await createClient();
+  const { count } = await supabase
+    .from('seo_overrides')
+    .select('*', { count: 'exact', head: true })
+    .eq('is_active', true);
+  
+  // Total static core pages = 8
+  const totalCorePages = 8;
+  const missing = totalCorePages - (count || 0);
+  
+  return {
+    pagesMissingSeo: Math.max(0, missing),
+    totalCorePages
+  };
 }

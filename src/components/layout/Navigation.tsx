@@ -7,9 +7,10 @@ import { Button } from '../ui/Button';
 
 interface NavigationProps {
   settings?: any;
+  navItems?: { label: string; href: string; is_external?: boolean; target?: string | null }[];
 }
 
-export function Navigation({ settings }: NavigationProps) {
+export function Navigation({ settings, navItems = [] }: NavigationProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [scrolled, setScrolled] = useState(false);
@@ -23,7 +24,7 @@ export function Navigation({ settings }: NavigationProps) {
 
   const toggleMobileMenu = () => setMobileMenuOpen(!mobileMenuOpen);
 
-  const links = [
+  const fallbackLinks = [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
     { label: 'About', href: '/about' },
@@ -31,6 +32,8 @@ export function Navigation({ settings }: NavigationProps) {
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/contact' },
   ];
+
+  const links = navItems && navItems.length > 0 ? navItems : fallbackLinks;
 
   return (
     <>

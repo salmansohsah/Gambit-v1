@@ -14,7 +14,7 @@ const projectSchema = z.object({
   strategy: z.string().nullable(),
   outcome_label: z.string().nullable(),
   outcome_metric: z.string().nullable(),
-  status: z.enum(['Draft', 'Review', 'Published']),
+  status: z.enum(['draft', 'review', 'published', 'archived']),
   cover_image_url: z.string().nullable(),
   evidence_image_url: z.string().nullable(),
   is_featured_home: z.boolean(),

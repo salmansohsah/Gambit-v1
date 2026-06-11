@@ -9,12 +9,18 @@ import { getPageContent, getSiteSettings } from '@/lib/dal/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
-export async function generateMetadata() {
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+
+export async function generateMetadata(): Promise<Metadata> {
   const content = await getPageContent('about');
-  return {
+  
+  return mergeSeoMetadata('/about', {
     title: content?.meta?.title || "About | GAMBIT",
     description: content?.meta?.description || "Operating philosophy and strategic positioning.",
-  };
+    alternates: {
+      canonical: '/about'
+    }
+  });
 }
 
 export default async function AboutPage() {

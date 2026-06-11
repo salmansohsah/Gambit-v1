@@ -16,15 +16,18 @@ interface PageProps {
   };
 }
 
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const insight = await getInsightBySlug(params.slug);
+  const { slug } = await params;
+  const insight = await getInsightBySlug(slug);
   if (!insight) return {};
   
   const title = `${insight.title} | Insights | GAMBIT`;
   const description = insight.summary || "Strategic Thinking. Practical Execution.";
   const images = insight.cover_image_url ? [insight.cover_image_url] : [];
 
-  return {
+  return mergeSeoMetadata(`/insights/${slug}`, {
     title,
     description,
     openGraph: {
@@ -38,8 +41,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title,
       description,
       images,
+    },
+    alternates: {
+      canonical: `/insights/${slug}`
     }
-  };
+  });
 }
 
 export async function generateStaticParams() {

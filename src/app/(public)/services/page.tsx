@@ -10,12 +10,17 @@ import { getPageContent } from '@/lib/dal/site';
 import { getCapabilities } from '@/lib/dal/taxonomy';
 import { getFeaturedProjects } from '@/lib/dal/projects';
 
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+
 export async function generateMetadata() {
   const content = await getPageContent('services');
-  return {
+  return mergeSeoMetadata('/services', {
     title: content?.meta?.title || "Services | GAMBIT",
     description: content?.meta?.description || "The Strategic Capabilities Layer.",
-  };
+    alternates: {
+      canonical: '/services'
+    }
+  });
 }
 
 export default async function ServicesPage() {

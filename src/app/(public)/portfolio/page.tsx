@@ -10,12 +10,17 @@ import { getPageContent } from '@/lib/dal/site';
 import { Metadata } from 'next';
 import Link from 'next/link';
 
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+
 export async function generateMetadata() {
   const content = await getPageContent('portfolio');
-  return {
+  return mergeSeoMetadata('/portfolio', {
     title: content?.meta?.title || "Portfolio | GAMBIT",
     description: content?.meta?.description || "Strategic Moves and Measurable Outcomes.",
-  };
+    alternates: {
+      canonical: '/portfolio'
+    }
+  });
 }
 
 export default async function PortfolioPage() {

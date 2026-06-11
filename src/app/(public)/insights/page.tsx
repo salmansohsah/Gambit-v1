@@ -11,12 +11,17 @@ import { Metadata } from 'next';
 import Link from 'next/link';
 import Image from 'next/image';
 
+import { mergeSeoMetadata } from '@/lib/seo-helper';
+
 export async function generateMetadata() {
   const content = await getPageContent('insights');
-  return {
+  return mergeSeoMetadata('/insights', {
     title: content?.meta?.title || "Insights | GAMBIT",
     description: content?.meta?.description || "Strategic Thinking. Practical Execution.",
-  };
+    alternates: {
+      canonical: '/insights'
+    }
+  });
 }
 
 export default async function InsightsPage() {

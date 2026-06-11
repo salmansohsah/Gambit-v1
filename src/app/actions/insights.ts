@@ -12,7 +12,7 @@ const insightSchema = z.object({
   cover_image_url: z.string().nullable(),
   author_id: z.string().nullable(),
   category_id: z.string().nullable(),
-  status: z.enum(['Draft', 'Review', 'Published']),
+  status: z.enum(['draft', 'review', 'published', 'archived']),
   is_featured: z.boolean(),
   read_time_minutes: z.number().nullable(),
   seo_title: z.string().nullable(),

@@ -2,12 +2,22 @@ import React from 'react';
 import Link from 'next/link';
 import { Typography } from '../ui/Typography';
 
-interface FooterProps {
-  settings?: any;
+interface NavItem {
+  label: string;
+  href: string;
+  is_external?: boolean;
+  target?: string | null;
 }
 
-export function Footer({ settings }: FooterProps) {
-  const links = [
+interface FooterProps {
+  settings?: any;
+  footerNav?: NavItem[];
+  legalNav?: NavItem[];
+  socialNav?: NavItem[];
+}
+
+export function Footer({ settings, footerNav = [], legalNav = [], socialNav = [] }: FooterProps) {
+  const fallbackFooterLinks = [
     { label: 'Home', href: '/' },
     { label: 'Services', href: '/services' },
     { label: 'About', href: '/about' },
@@ -15,6 +25,8 @@ export function Footer({ settings }: FooterProps) {
     { label: 'Insights', href: '/insights' },
     { label: 'Contact', href: '/contact' },
   ];
+
+  const footerLinks = footerNav && footerNav.length > 0 ? footerNav : fallbackFooterLinks;
 
   return (
     <footer className="bg-surface-panel border-t border-surface-elevated py-16 mt-auto">
@@ -35,7 +47,7 @@ export function Footer({ settings }: FooterProps) {
           <div className="md:col-span-1">
             <Typography variant="label" className="mb-6 block text-text-secondary uppercase">Navigation</Typography>
             <ul className="space-y-4">
-              {links.map((link) => (
+              {footerLinks.map((link) => (
                 <li key={link.label}>
                   <Link href={link.href} className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
                     {link.label}
@@ -64,28 +76,40 @@ export function Footer({ settings }: FooterProps) {
           <div className="md:col-span-1">
             <Typography variant="label" className="mb-6 block text-text-secondary uppercase">Social</Typography>
             <ul className="space-y-4">
-              {settings?.linkedin_url ? (
-                <li>
-                  <Link href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
-                    LinkedIn
-                  </Link>
-                </li>
+              {socialNav && socialNav.length > 0 ? (
+                socialNav.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} target={link.target || "_blank"} rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))
               ) : (
-                <li>
-                  <span className="text-sm font-medium text-text-muted opacity-50 cursor-not-allowed">LinkedIn (Coming Soon)</span>
-                </li>
-              )}
-              
-              {settings?.twitter_url ? (
-                <li>
-                  <Link href={settings.twitter_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
-                    Twitter
-                  </Link>
-                </li>
-              ) : (
-                <li>
-                  <span className="text-sm font-medium text-text-muted opacity-50 cursor-not-allowed">Twitter (Coming Soon)</span>
-                </li>
+                <>
+                  {settings?.linkedin_url ? (
+                    <li>
+                      <Link href={settings.linkedin_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
+                        LinkedIn
+                      </Link>
+                    </li>
+                  ) : (
+                    <li>
+                      <span className="text-sm font-medium text-text-muted opacity-50 cursor-not-allowed">LinkedIn (Coming Soon)</span>
+                    </li>
+                  )}
+                  
+                  {settings?.twitter_url ? (
+                    <li>
+                      <Link href={settings.twitter_url} target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-text-muted hover:text-accent-gold transition-colors">
+                        Twitter
+                      </Link>
+                    </li>
+                  ) : (
+                    <li>
+                      <span className="text-sm font-medium text-text-muted opacity-50 cursor-not-allowed">Twitter (Coming Soon)</span>
+                    </li>
+                  )}
+                </>
               )}
             </ul>
           </div>
@@ -97,8 +121,18 @@ export function Footer({ settings }: FooterProps) {
             &copy; {new Date().getFullYear()} {settings?.company_name || 'GAMBIT'}. All rights reserved.
           </Typography>
           <div className="flex gap-6">
-            <span className="text-xs text-text-muted opacity-50 cursor-not-allowed">Privacy Policy (Coming Soon)</span>
-            <span className="text-xs text-text-muted opacity-50 cursor-not-allowed">Terms of Service (Coming Soon)</span>
+            {legalNav && legalNav.length > 0 ? (
+              legalNav.map((link) => (
+                <Link key={link.label} href={link.href} target={link.target || "_self"} className="text-xs text-text-muted hover:text-accent-gold transition-colors">
+                  {link.label}
+                </Link>
+              ))
+            ) : (
+              <>
+                <span className="text-xs text-text-muted opacity-50 cursor-not-allowed">Privacy Policy (Coming Soon)</span>
+                <span className="text-xs text-text-muted opacity-50 cursor-not-allowed">Terms of Service (Coming Soon)</span>
+              </>
+            )}
           </div>
         </div>
       </div>

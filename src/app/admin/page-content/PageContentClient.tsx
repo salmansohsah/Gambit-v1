@@ -26,14 +26,22 @@ export default function PageContentClient({ initialContent }: { initialContent: 
     if (selectedItem) {
       // Find the latest version of this item from initialContent if possible
       const latestItem = initialContent.find(i => i.id === selectedItem.id) || selectedItem;
+      const jsonContent = latestItem.status === 'draft' && latestItem.draft_value_json 
+                          ? latestItem.draft_value_json 
+                          : latestItem.value_json;
+      const textContent = latestItem.status === 'draft' && latestItem.draft_value_text !== null
+                          ? latestItem.draft_value_text 
+                          : latestItem.value_text;
+
       setFormData({
-        value_text: latestItem.value_text || '',
-        value_json: latestItem.value_json ? JSON.stringify(latestItem.value_json, null, 2) : '',
+        value_text: textContent || '',
+        value_json: jsonContent ? JSON.stringify(jsonContent, null, 2) : '',
+        status: latestItem.status || 'published'
       });
     }
   }, [selectedItem, initialContent]);
 
-  const handleSave = () => {
+  const handleSave = (actionType: 'draft' | 'published') => {
     if (!selectedItem) return;
     startTransition(async () => {
       let finalJson = null;
@@ -46,10 +54,21 @@ export default function PageContentClient({ initialContent }: { initialContent: 
         }
       }
 
-      const dataToSave = {
-        value_text: selectedItem.page_content_schema?.type === 'text' ? formData.value_text : null,
-        value_json: selectedItem.page_content_schema?.type === 'json' ? finalJson : null,
-      };
+      const isText = selectedItem.page_content_schema?.type === 'text';
+      const isJson = selectedItem.page_content_schema?.type === 'json';
+
+      const dataToSave: any = { status: actionType };
+      
+      if (actionType === 'draft') {
+        dataToSave.draft_value_text = isText ? formData.value_text : null;
+        dataToSave.draft_value_json = isJson ? finalJson : null;
+      } else if (actionType === 'published') {
+        // When publishing, update BOTH the live value and the draft value to match
+        dataToSave.value_text = isText ? formData.value_text : null;
+        dataToSave.value_json = isJson ? finalJson : null;
+        dataToSave.draft_value_text = isText ? formData.value_text : null;
+        dataToSave.draft_value_json = isJson ? finalJson : null;
+      }
 
       const result = await updatePageContent(selectedItem.id, dataToSave);
 
@@ -115,9 +134,17 @@ export default function PageContentClient({ initialContent }: { initialContent: 
                   {selectedItem.page_content_schema?.description}
                 </Typography>
               </div>
-              <Button onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
-                <Save className="w-4 h-4" /> Save
-              </Button>
+              <div className="flex items-center gap-2">
+                {formData.status === 'draft' && (
+                  <span className="text-xs font-semibold uppercase tracking-widest text-amber-500 bg-amber-500/10 px-2 py-1 rounded-full mr-2">Draft</span>
+                )}
+                <Button variant="outline" onClick={() => handleSave('draft')} disabled={isPending} className="flex items-center gap-2">
+                  <Save className="w-4 h-4" /> Save as Draft
+                </Button>
+                <Button onClick={() => handleSave('published')} disabled={isPending} className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white border-green-600">
+                  <FileText className="w-4 h-4" /> Publish Changes
+                </Button>
+              </div>
             </div>
 
             <div className="flex-1 overflow-y-auto p-6 custom-scrollbar">

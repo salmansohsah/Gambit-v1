@@ -4,7 +4,7 @@ import React, { useState, useTransition } from 'react';
 import { Typography } from '@/components/ui/Typography';
 import { Panel } from '@/components/ui/Panel';
 import { Button } from '@/components/ui/Button';
-import { Search, Plus, Save, Trash2, Globe, FileText, CheckCircle2 } from 'lucide-react';
+import { Search, Plus, Save, Trash2, Globe, FileText, CheckCircle2, History } from 'lucide-react';
 import { createInsight, updateInsight, deleteInsight } from '@/app/actions/insights';
 import { useRouter } from 'next/navigation';
 
@@ -53,7 +53,7 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
         cover_image_url: '',
         author_id: null,
         category_id: null,
-        status: 'Draft',
+        status: 'draft',
         is_featured: false,
         read_time_minutes: 5,
         seo_title: '',
@@ -132,9 +132,9 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
             >
               <div className="flex items-start justify-between mb-2">
                 <Typography variant="body-sm" className="font-semibold line-clamp-2 pr-4">{insight.title}</Typography>
-                {insight.status === 'Published' ? (
+                {insight.status === 'published' ? (
                   <Globe className="w-4 h-4 text-green-500 shrink-0" />
-                ) : insight.status === 'Review' ? (
+                ) : insight.status === 'review' ? (
                   <CheckCircle2 className="w-4 h-4 text-amber-500 shrink-0" />
                 ) : (
                   <FileText className="w-4 h-4 text-text-muted shrink-0" />
@@ -162,13 +162,54 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
               <Typography variant="h4">{isCreating ? 'Create New Insight' : 'Edit Insight'}</Typography>
               <div className="flex items-center gap-3">
                 {!isCreating && (
-                  <Button variant="outline" className="text-red-500 border-red-500/20 hover:bg-red-500/10" onClick={handleDelete} disabled={isPending}>
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
+                  <>
+                    <Button variant="outline" className="text-text-secondary border-surface-elevated hover:bg-surface-elevated" onClick={() => router.push(`/admin/insights/${selectedInsight.id}/history`)}>
+                      <History className="w-4 h-4 mr-2" /> History
+                    </Button>
+                    <Button variant="outline" className="text-red-500 border-red-500/20 hover:bg-red-500/10" onClick={handleDelete} disabled={isPending}>
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </>
                 )}
-                <Button onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
-                  <Save className="w-4 h-4" /> {isPending ? 'Saving...' : 'Save Changes'}
-                </Button>
+                
+                {isCreating ? (
+                  <Button onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
+                    <Save className="w-4 h-4" /> {isPending ? 'Saving...' : 'Create Draft'}
+                  </Button>
+                ) : (
+                  <div className="flex items-center gap-2 bg-surface-elevated/30 p-1 rounded-md">
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'draft' ? 'default' : 'ghost'} 
+                      onClick={() => { setFormData({...formData, status: 'draft'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Draft</Button>
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'review' ? 'default' : 'ghost'} 
+                      onClick={() => { setFormData({...formData, status: 'review'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Review</Button>
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'published' ? 'default' : 'ghost'} 
+                      className={formData.status === 'published' ? 'bg-green-600 hover:bg-green-700 text-white' : ''}
+                      onClick={() => { setFormData({...formData, status: 'published'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Publish</Button>
+                    <Button 
+                      size="sm"
+                      variant={formData.status === 'archived' ? 'default' : 'ghost'} 
+                      className={formData.status === 'archived' ? 'bg-amber-600 hover:bg-amber-700 text-white' : ''}
+                      onClick={() => { setFormData({...formData, status: 'archived'}); setTimeout(handleSave, 0); }}
+                      disabled={isPending}
+                    >Archive</Button>
+                    <div className="w-px h-6 bg-surface-elevated mx-1" />
+                    <Button size="sm" onClick={handleSave} disabled={isPending} className="flex items-center gap-2">
+                      <Save className="w-4 h-4" /> Save
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
 
@@ -233,9 +274,10 @@ export default function InsightsClient({ initialInsights, teamMembers, categorie
                       onChange={e => setFormData({...formData, status: e.target.value})}
                       className="w-full bg-surface-base border border-surface-elevated rounded-md px-4 py-3 font-semibold focus:border-accent-gold outline-none transition-colors"
                     >
-                      <option value="Draft">Draft</option>
-                      <option value="Review">Review</option>
-                      <option value="Published">Published</option>
+                      <option value="draft">Draft</option>
+                      <option value="review">Review</option>
+                      <option value="published">Published</option>
+                      <option value="archived">Archived</option>
                     </select>
                   </div>
                   <div>

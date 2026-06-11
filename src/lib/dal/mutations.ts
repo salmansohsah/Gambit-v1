@@ -1,5 +1,6 @@
 import { createClient } from '@/lib/supabase/server'
 import { revalidateTag } from 'next/cache'
+import { logAuditEvent } from '@/lib/utils/auditLogger'
 
 export type ActionState<T = any> = {
   success: boolean
@@ -44,6 +45,14 @@ export async function createAction<T = any>(
       }
     }
 
+    // Fire-and-forget audit log
+    logAuditEvent({
+      entityType: table,
+      entityId: data.id?.toString() || 'unknown',
+      action: 'create',
+      changes: payload,
+    });
+
     return { success: true, message: 'Record created successfully', data }
   } catch (error: any) {
     console.error(`Create Action Error [${table}]:`, error)
@@ -69,6 +78,22 @@ export async function updateAction<T = any>(
       return { success: false, message: 'Unauthorized', error: 'Not authenticated' }
     }
 
+    // 1. Fetch the OLD record to store as a revision (only for supported entities)
+    if (['projects', 'insights', 'page_content'].includes(table)) {
+      const { data: oldRecord } = await supabase
+        .from(table)
+        .select('*')
+        .eq('id', id)
+        .single();
+        
+      if (oldRecord) {
+        // We use dynamic import to avoid circular dependencies if any
+        const { createRevision } = await import('./revisions');
+        const entityType = table === 'projects' ? 'project' : table === 'insights' ? 'insight' : 'page_content';
+        await createRevision(entityType, String(id), oldRecord);
+      }
+    }
+
     const { data, error } = await supabase
       .from(table)
       .update(payload)
@@ -84,6 +109,22 @@ export async function updateAction<T = any>(
         revalidateTag(tag)
       }
     }
+
+    // Fire-and-forget audit log
+    // Determine action type if it's a publish, archive, or just an update
+    let actionType: 'update' | 'publish' | 'archive' | 'restore' = 'update';
+    if (payload.status === 'published') actionType = 'publish';
+    if (payload.status === 'archived') actionType = 'archive';
+    if (payload.deleted_at !== undefined) {
+      actionType = payload.deleted_at === null ? 'restore' : 'delete'; // Soft delete logged as delete or restore
+    }
+
+    logAuditEvent({
+      entityType: table,
+      entityId: id.toString(),
+      action: actionType as any,
+      changes: payload,
+    });
 
     return { success: true, message: 'Record updated successfully', data }
   } catch (error: any) {
@@ -122,6 +163,13 @@ export async function deleteAction<T = any>(
         revalidateTag(tag)
       }
     }
+
+    // Fire-and-forget audit log
+    logAuditEvent({
+      entityType: table,
+      entityId: id.toString(),
+      action: 'delete',
+    });
 
     return { success: true, message: 'Record deleted successfully' }
   } catch (error: any) {
